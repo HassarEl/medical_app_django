@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'inc_files/head.html' %}
+
+<body id="page-top">
+    {% if user.is_authenticated %}
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include 'inc_files/side_bar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                {%  include 'inc_files/top_bar.html' %}
+
+                <div class="container">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Home Page</h1>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow m-4">
+                                <div class="card-body d-flex align-items-center justify-content-center">
+                                    <h6 class="card-text mb-2 text-body-secondary ">Bienvenue Dans Votre Application De Gestion De Cabine Medical</h6>
+                                    <img height="160px" src="{% static 'website/img/logo.png' %}" alt="Logo Image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    {% block content %}
+                    <div class="row">
+                        {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                              </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% endblock %}
+
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+            {%  include 'inc_files/footer.html' %}
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'inc_files/script.html' %}
+
+{% else %}
+
+    {% include 'login.html' %}
+
+{% endif %}
+
+</body>
+
+</html>
